@@ -1,0 +1,39 @@
+[
+  {
+    "url": "https://example.com",
+    "status": 200,
+    "issues": [
+      "Missing X-Frame-Options header.",
+      "Missing Content-Security-Policy header.",
+      "Missing X-Content-Type-Options header.",
+      "Missing HSTS header."
+    ],
+    "severity": "medium",
+    "security_headers": {
+      "X-Frame-Options": null,
+      "Content-Security-Policy": null,
+      "X-Content-Type-Options": null,
+      "Strict-Transport-Security": null
+    }
+  },
+  {
+    "url": "https://httpbin.org/get",
+    "status": 200,
+    "issues": [
+      "Missing X-Frame-Options header.",
+      "Missing Content-Security-Policy header.",
+      "Missing X-Content-Type-Options header.",
+      "Missing HSTS header.",
+      "CORS allows any origin (*) \u2014 risky.",
+      "Missing Cache-Control header (security/caching risk).",
+      "Leaking server fingerprint via Server header."
+    ],
+    "severity": "medium",
+    "security_headers": {
+      "X-Frame-Options": null,
+      "Content-Security-Policy": null,
+      "X-Content-Type-Options": null,
+      "Strict-Transport-Security": null
+    }
+  }
+]

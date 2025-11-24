@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  scanner:
+    build: ./scanner
+    container_name: api-scanner
+    environment:
+      # comma-separated URLs; change as needed
+      SCANNER_TARGETS: "https://example.com,https://httpbin.org/get,https://jsonplaceholder.typicode.com/posts/1"
+      SCANNER_CONCURRENCY: "5"
+      SCANNER_TIMEOUT: "10"
+      # Scan interval in seconds (how often to re-scan)
+      SCAN_INTERVAL: "30"
+      REPORT_PATH: "/reports/report.json"
+    volumes:
+      - reports:/reports
+    restart: unless-stopped
+
+  worker:
+    build: ./worker-go
+    container_name: api-scanner-worker
+    environment:
+      REPORT_PATH: "/reports/report.json"
+    volumes:
+      - reports:/reports
+    ports:
+      - "8081:8081"
+    restart: unless-stopped
+    depends_on:
+      - scanner
+
+volumes:
+  reports:
